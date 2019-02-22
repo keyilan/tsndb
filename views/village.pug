@@ -1,0 +1,26 @@
+extends layout.pug
+
+block navbar
+	include nav.pug
+
+block title
+	title= title
+
+block content
+	h1= doc.name
+	p
+		span= doc.location[0]
+		span &deg; N,&nbsp;
+		span= doc.location[1]
+		span &deg; E
+	h2 Notes
+	each note in doc.notes
+		p= note
+	h2 Map
+	div(id='mapid')
+	script.
+		var mymap = L.map('mapid').setView([#{doc.location[0]},#{doc.location[1]}], 13);		
+	script(src='/js/map.js')
+
+block footer
+	include footer.pug

@@ -28,10 +28,16 @@ block content
 						thead
 							td classifications
 							td villages
+							td consultants
 						tbody
 							tr
 								td= val.classifications
-								td= val.villages
+								td
+										each village in val.villages
+											a.list(href='/village/'+ village) #{village}
+								td
+									each consultant in val.consultants
+										a.list(href='/consultant/'+ consultant) #{consultant}
 
 	pre= JSON.stringify(array)
 

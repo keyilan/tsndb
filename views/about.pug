@@ -1,0 +1,38 @@
+extends layout.pug
+
+block navbar
+	include nav.pug
+
+block title
+	title tsndb - About
+
+block content
+	h1 About
+	p The following are production notes to explain the different organisational methods for the data.
+
+	h2 Backend
+	p The database is built in MongoDB, a non-relational database system which stores data in JSON, allowing for a branching data format rather than being restricted to spreadsheet-like tables as used by MySQL.
+	p Express.js is the web server, written in Javascript with Node.js. The database is accessed by Express.js through Mongoose. Pages are rendered with the Pug layout engine.
+	p The project is hosted on xyy.tw, a development server for Phonemica, delivered by an NGINX proxy to the Node.js apps used by the site.
+
+	h2 Data structure
+	p Each cluster of data -- villages, consultants, language varieties etc -- is stored in a dedicated collection in MongoDB. Each collection has an ideal data model, from which the necessary cross-referencing is pulled from automated scripts. The following sections give important information on how this is to be formatted and the justifications for that format.
+
+	h3 Subtribes
+	p Subtribes present on of the most significant means of dividing and cross-referencing data. As such, documents in this collection hold a large amount of nodes.
+
+	h3 Consultants
+	p The consultants collection holds all relevant metadata about each speaker consulted for research on Tangsa-Nocte varieties.
+	p This collection may also store historical figures, such as past village chiefs from the British survey records. This needs to be decided upon, as to whether a single collection for all people is justifiable, or if it's better to have figures who are not consultants stored in a separate collection.
+	p Each consultant needs a unique id, can just be their firstname + a dialect ISO code	or an index number reflecting order we've talked to them. Examples coule be rangjungjog, wanglungmos, renmanmos, mohemron, khulkhamjog. Could also do a three- letter clan name if that's easlier or helps clear ambiguity. Better than numerals.
+	p Consultants are stored in documents outside of the consutant collection simply as their IDs.
+
+	h3 Villages
+	p Each village also needs a unique identifier, tho what to do with villages that move, maybe those get to be separate entries. then historical villages still exist in the system with fates of habitation
+	p Villages are stored in other documents for cross-referencing only as their IDs.
+
+block footer
+	include footer.pug
+	script.
+		let active ="#{active}";
+	script(src='/js/navbar.js')

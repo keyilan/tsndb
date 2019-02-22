@@ -31,6 +31,12 @@ app.get('/', function(req, res) {
   })
 })
 
+app.get('/about', function(req, res) {
+  res.render('about', {
+    active: 'about'
+  })
+})
+
 app.get('/subtribes', function(req, res) {
   db.collection("subtribes").find({}).toArray(function(err, result) {
     if (err) throw err;
@@ -39,6 +45,21 @@ app.get('/subtribes', function(req, res) {
       active: 'subtribes',
       array: result
     })
+  });
+})
+
+app.get('/village/:id', function(req, res) {
+  db.collection('geography').findOne({'id':req.params.id}).then(function(doc) {
+    if(!doc) {
+      throw new Error('No record found.');
+    } else {
+      console.log(doc);
+      // console.log(result);
+      res.render('village', {
+        active: 'village',
+        doc: doc
+      })
+    }
   });
 })
 
