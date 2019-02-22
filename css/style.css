@@ -1,0 +1,21 @@
+html {
+	font-size: 15px;
+}
+
+#container {
+	min-height: 100%;
+	margin-bottom: -100px;
+}
+
+#content {
+	padding: 20px;
+	padding-bottom: 0;
+}
+
+#footer {
+	height: 80px;
+	background: silver;
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden
+}

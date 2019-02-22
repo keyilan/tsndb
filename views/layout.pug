@@ -1,0 +1,17 @@
+html
+	head
+		block title
+			meta(charset='utf-8')
+			meta(mame='viewport' content='width=device-width, initial-scale=1')
+		block scripts
+			link(rel='stylesheet', href='/css/uikit.min.css')
+			script(src='/js/uikit.min.js')
+			script(src='/js/uikit-icons.min.js')
+			link(rel='stylesheet', href='/css/style.css')
+	body
+		#container
+			block navbar
+			#content
+				block content
+		#footer
+			block footer

@@ -1,0 +1,31 @@
+{
+  "name": "tsndb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon ./start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keyilan/tsndb.git"
+  },
+  "author": "柯禕藍",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keyilan/tsndb/issues"
+  },
+  "homepage": "https://github.com/keyilan/tsndb#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.14",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
