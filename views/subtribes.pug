@@ -1,0 +1,42 @@
+extends layout.pug
+
+block navbar
+	include nav.pug
+
+block title
+	title tsndb - Subtribes
+
+block content
+	h4 Subtribes
+	table(class='alternate')
+		each val in array
+			tr
+				td
+					table
+						thead
+							td general name
+							td orthography
+							td phonemic
+							td other names
+						tbody
+							tr
+								td= val.general[0].toUpperCase() + val.general.substr(1)
+								td= val.autonym.orthography[0].toUpperCase() + val.autonym.orthography.substr(1)
+								td= val.autonym.phonemic
+								td
+									a(href='') ...
+						thead
+							td classifications
+							td villages
+						tbody
+							tr
+								td= val.classifications
+								td= val.villages
+
+	pre= JSON.stringify(array)
+
+block footer
+	include footer.pug
+	script.
+		let active ="#{active}";
+	script(src='/js/navbar.js')

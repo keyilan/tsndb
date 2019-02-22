@@ -1,11 +1,19 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
-// const mongoose = require('mongoose');
 const app = express();
 
 // need to add basic authorisation to keep editing limited to people with the pw. worry about that later tho.
+
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://127.0.0.1/tsndb';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// models for mongoose
+let Subtribe = require('./models/subtribe.js');
 
 app.set('view engine', 'pug')
 app.use("/css", express.static(__dirname + '/css'));
@@ -14,19 +22,28 @@ app.use("/js", express.static(__dirname + '/js'));
 let port = 3002;
 
 app.listen(port, () => {
-    console.log('Server is up and running on port numner ' + port);
+  console.log(port);
 });
 
-app.get('/', function (req, res) {
-  res.render('index', { active: 'home'})
+app.get('/', function(req, res) {
+  res.render('index', {
+    active: 'home'
+  })
 })
 
-app.get('/subtribe', function (req, res) {
-  res.render('index', { active: 'subtribe'})
+app.get('/subtribes', function(req, res) {
+  db.collection("subtribes").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.render('subtribes', {
+      active: 'subtribes',
+      array: result
+    })
+  });
 })
 
 /* This stuff will need to go to another file */
 let subtribes = ['mossang', 'joglei', 'kimsing', 'champang']
 for (let i = 0; i < subtribes.length; i++) {
-	console.log(subtribes[i])
+  console.log(subtribes[i])
 }

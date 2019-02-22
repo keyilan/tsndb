@@ -1,11 +1,13 @@
 nav(class="uk-navbar-container" uk-navbar)
 	div(class="uk-navbar-left")
 		ul(class="uk-navbar-nav")
-			li(class="uk-active")
-				a(href="") home
-			li(class="uk-parent")
-				a(href="/substribe") subtribe
-			li(class="uk-parent")
-				a(href="/clan") clan
-			li(class="uk-parent")
+			li(id="nav-home", class="uk-parent uk-active")
+				a(href="/") home
+			li(id="nav-subtribes", class="uk-parent")
+				a(href="/subtribes") subtribes
+			li(id="nav-clans", class="uk-parent")
+				a(href="/clans") clans
+			li(id="nav-consultants", class="uk-parent")
+				a(href="/consultants") consultants
+			li(id="nav-map", class="uk-parent")
 				a(href="/map") map
