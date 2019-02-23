@@ -63,6 +63,21 @@ app.get('/village/:id', function(req, res) {
   });
 })
 
+app.get('/consultant/:id', function(req, res) {
+  db.collection('consultants').findOne({'id':req.params.id}).then(function(doc) {
+    if(!doc) {
+      throw new Error('No record found.');
+    } else {
+      console.log(doc);
+      // console.log(result);
+      res.render('consultant', {
+        active: 'consultant',
+        doc: doc
+      })
+    }
+  });
+})
+
 /* This stuff will need to go to another file */
 let subtribes = ['mossang', 'joglei', 'kimsing', 'champang']
 for (let i = 0; i < subtribes.length; i++) {

@@ -1,0 +1,27 @@
+extends layout.pug
+
+block navbar
+	include nav.pug
+
+block title
+	title= title
+
+block content
+	h1
+		span= doc.name.given.orthography
+		span &nbsp;
+		span= doc.name.surname.orthography
+	p
+		span= doc.name.given.phonemic
+		span &nbsp;
+		span= doc.name.surname.phonemic
+	h2 Biography
+	p= doc.dob
+	p= doc.birthplace
+	p= doc.language.native
+	h2 Notes
+	each note in doc.notes
+		p= note
+
+block footer
+	include footer.pug
